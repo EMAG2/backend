@@ -16,19 +16,7 @@ requireDir(mongooseConfig.modelsPath);
 
 app.use(bodyParse.json());
 
-const originWhiteList = [
-  'http://localhost:4200',
-];
-
-const corsOptions = {
-  origin: (origin, callback) => {
-    const isWhiteListed = originWhiteList.indexOf(origin) !== -1;
-    callback(null, isWhiteListed);
-  },
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use('/api', require('./app/routes'));
 
